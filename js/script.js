@@ -1,6 +1,4 @@
 $(document).ready(function() {
-	var x = 'x';
-	var o = 'o';
 	var turn = 0;
 	var i = 1;
 
@@ -13,15 +11,16 @@ $(document).ready(function() {
 	$('#reset').on('click', reset);
 
 	function turns() {
-		turn++;
-		if (isOdd(turn) && !($(this).hasClass('o'))) {
-			$(this).addClass('x');
+		if (isOdd(turn) && !($(this).hasClass('o')) && !($(this).hasClass('x'))) {
+			$(this).addClass('x').text('x');
+			turn++;
 		} 
-		if (!isOdd(turn) && !($(this).hasClass('x'))) {
-			$(this).addClass('o');
+		if (!isOdd(turn) && !($(this).hasClass('x')) && !($(this).hasClass('o'))) {
+			$(this).addClass('o').text('o');
+			turn++;
 		}
 		if (turn == 10) {
-			$('#board li').removeClass('x').removeClass('o');
+			$('#board li').removeClass('x').removeClass('o').text("");
 			turn = 0;
 		}
 	}
@@ -31,7 +30,7 @@ $(document).ready(function() {
 	}
 
 	function reset() {
-		$('#board li').removeClass('x').removeClass('o');
+		$('#board li').removeClass('x').removeClass('o').text("");
 		turn = 0;
 	}
 
