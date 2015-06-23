@@ -14,13 +14,15 @@ $(document).ready(function() {
 
 	function turns() {
 		turn++;
-		if (isOdd(turn)) {
+		if (isOdd(turn) && !($(this).hasClass('o'))) {
 			$(this).addClass('x');
-		} else {
+		} 
+		if (!isOdd(turn) && !($(this).hasClass('x'))) {
 			$(this).addClass('o');
 		}
 		if (turn == 10) {
 			$('#board li').removeClass('x').removeClass('o');
+			turn = 0;
 		}
 	}
 
@@ -30,6 +32,7 @@ $(document).ready(function() {
 
 	function reset() {
 		$('#board li').removeClass('x').removeClass('o');
+		turn = 0;
 	}
 
 });
