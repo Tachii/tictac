@@ -9,17 +9,27 @@ $(document).ready(function() {
 		i++;
 	}
 
-	function isOdd(num) {
-		return num % 2;
-	}
+	$('#board li').on('click', turns);
+	$('#reset').on('click', reset);
 
-	$('#board li').on('click', function() {
+	function turns() {
 		turn++;
-		if (isOdd(turn)){
+		if (isOdd(turn)) {
 			$(this).addClass('x');
 		} else {
 			$(this).addClass('o');
 		}
-	});
+		if (turn == 10) {
+			$('#board li').removeClass('x').removeClass('o');
+		}
+	}
+
+	function isOdd(num) {
+		return num % 2;
+	}
+
+	function reset() {
+		$('#board li').removeClass('x').removeClass('o');
+	}
 
 });
